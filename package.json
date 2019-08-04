@@ -1,0 +1,29 @@
+{
+  "name": "fruumo-tabs",
+  "version": "1.0.0",
+  "description": "Another tab manager for chrome",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manak/fruumo-tabs.git"
+  },
+  "author": "Manak Kapoor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manak/fruumo-tabs/issues"
+  },
+  "homepage": "https://github.com/Manak/fruumo-tabs#readme",
+  "devDependencies": {
+    "@types/chrome": "0.0.86",
+    "awesome-typescript-loader": "^5.2.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "typescript": "^3.4.3",
+    "webpack": "^4.30.0"
+  },
+  "dependencies": {
+    "dexie": "^2.0.4"
+  }
+}
