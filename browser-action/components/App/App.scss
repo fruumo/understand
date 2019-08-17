@@ -1,0 +1,36 @@
+body{
+  font-family: 'Open Sans', sans-serif;
+  #app{
+    padding:10px;
+    width:100%;
+    box-sizing:border-box;
+    .app-container{
+      display:flex;
+      flex-direction: column;
+      width:100%;
+      .widget {
+        width:100%;
+        padding:10px;
+        box-sizing:border-box;
+        border-bottom:1px solid #E5E5E5;
+        &.nav{
+          position: fixed;
+          background: white;
+          top: 0;
+          left: 0;
+          padding: 10px;
+        }
+        .widget-title {
+          font-size:14px;
+          font-weight:300;
+          padding: 10px 0;
+        }
+      }
+      :first-child, :last-child{
+        &.widget{
+          border-bottom:none;
+        }
+      }
+    }
+  }
+}

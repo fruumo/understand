@@ -1,12 +1,10 @@
-import StateManager from './StateManager';
-import IconManager from './IconManager';
-import ConnectionManager from './ConnectionManager';
 
-let sm:StateManager;
-let im:IconManager;
-let cm: ConnectionManager;
+import SessionManager from './SessionManager';
+import DataRequestManager from './DataRequestManager';
+
+let ssm: SessionManager;
+let dm: DataRequestManager;
 window.onload = () => {
-  sm = new StateManager(console.log);
-  im = new IconManager(sm);
-  cm = new ConnectionManager(sm);
+  ssm = new SessionManager();
+  dm = new DataRequestManager(ssm);
 }

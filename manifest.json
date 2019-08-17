@@ -1,6 +1,6 @@
 {
-  "name": "Tabs by Fruumo",
-  "short_name":"Tabs",
+  "name": "Understand by Fruumo",
+  "short_name":"Understand",
   "manifest_version":2,
   "version": "1.0",
   "offline_enabled":true,
@@ -13,8 +13,9 @@
   },
   "browser_action": {
     "default_icon": {
-      "128": "images/icon.png"
-    }
+      "1024": "images/icon.png"
+    },
+    "default_popup": "./browser-action/index.html"
   },
   "permissions":["chrome://favicon/*", "<all_urls>","tabs","sessions","storage","unlimitedStorage","background"]
 }

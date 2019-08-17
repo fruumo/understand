@@ -1,0 +1,26 @@
+.major-stats-container-container{
+  padding-top:65px;
+  .major-stats-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    .stat{
+      text-align:center;
+      padding:10px;
+      width:30%;
+      border-right:1px solid #E5E5E5;
+      .title{
+        font-size:14px;
+        font-weight: 300;
+      }
+      .value{
+        font-size:25px;
+        font-weight:400;
+        color:#E16D78;
+      }
+    }
+    :last-child{
+      border-right:none;
+    }
+  }
+}

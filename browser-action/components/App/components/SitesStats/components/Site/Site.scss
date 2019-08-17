@@ -1,0 +1,52 @@
+.site-stats-container-container{
+  .site-stats-container{
+    .site-container-container{
+      border-bottom:1px solid #E5E5E5;
+      font-weight:300;
+      .site-container{
+        display:flex;
+        flex-direction:row;
+        width:100%;
+        padding: 12px 0;
+        .icon-container{
+          width:10%;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          img{
+            width:16px;
+          }
+        }
+        .stats-container{
+          width:90%;
+          .title-usage-container{
+            display:flex;
+            flex-direction:row;
+            justify-content:space-between;
+            font-size:14px;
+          }
+          .progress-bar-container{
+            height:13px;
+            width:100%;
+            margin: 4px 0;
+            background: #F2F2F2;
+            border-radius:2px;
+            .progress-bar{
+              width:50%;
+              height:100%;
+              background:linear-gradient(90deg, #E16D78 0%, #FA9284 100%);
+              border-radius:2px;
+            }
+          }
+          .metadata-container{
+            display:flex;
+            flex-direction:row;
+            justify-content:space-between;
+            font-size:10px;
+            height:12px;
+          }
+        }
+      }
+    }
+  }
+}
