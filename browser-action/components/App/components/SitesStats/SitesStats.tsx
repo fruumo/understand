@@ -87,7 +87,6 @@ export default class SitesStats extends React.Component<propsType, stateType> {
       });
     }
 
-    temp.sort(siteTypeSort);
     for(let i = 0; i< temp.length; i++){
       temp[i].percentage = temp[i].time/temp[0].time;
     }
