@@ -72,13 +72,15 @@ export default class SitesStats extends React.Component<propsType, stateType> {
 
     if(temp.length > 5){
       let totalExcessTime = 0;
+      let websiteCount = 0;
       for(let i =5; i< temp.length; i++){
         totalExcessTime+= temp[i].time;
+        websiteCount++;
       }
       temp = temp.slice(0,5);
       temp.push({
         icon: 'chrome://favicon/size/16@1x/http://',
-        title: 'Other websites',
+        title: `${websiteCount} other websites`,
         percentage:-1,
         time: totalExcessTime,
         sessionCount: -1,
