@@ -54,7 +54,7 @@ export default class Navbar extends React.Component<propsType, stateType> {
       dropdownData.push({title:'Yesterday', startTime: startTime , endTime: endTime});
     }
 
-    if(dataDays >= 1){
+    if(dataDays >= 0){
       const startTime = moment().subtract(7, 'days').hour(0).minute(0).second(0).valueOf();
       const endTime = moment().hour(23).minute(59).second(0).valueOf();
       dropdownData.push({title:'This week', startTime: startTime , endTime: endTime});

@@ -73,9 +73,11 @@ export default class SitesStats extends React.Component<propsType, stateType> {
     if(temp.length > 5){
       let totalExcessTime = 0;
       let websiteCount = 0;
+      let sessionCount = 0;
       for(let i =5; i< temp.length; i++){
         totalExcessTime+= temp[i].time;
         websiteCount++;
+        sessionCount += temp[i].sessionCount;
       }
       temp = temp.slice(0,5);
       temp.push({
@@ -83,7 +85,7 @@ export default class SitesStats extends React.Component<propsType, stateType> {
         title: `${websiteCount} other websites`,
         percentage:-1,
         time: totalExcessTime,
-        sessionCount: -1,
+        sessionCount: sessionCount,
       });
     }
 

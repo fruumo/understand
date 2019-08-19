@@ -19,6 +19,7 @@ class SessionDb extends Dexie {
     this.sessions = this.table("sessions");
     this.domains = this.table("domains");
     this.statistics = this.table("statistics");
+    (window as any).sdb = this;
   }
 
   createSession(tabId: number, url: string, sessionId: string){
@@ -98,7 +99,7 @@ class SessionDb extends Dexie {
 
   getSessions(startTime:number, endTime:number) : Promise<ISession[]> {
     return new Promise((resolve) => {
-      this.sessions.where("sessionStart").aboveOrEqual(startTime).and((x) => {return x.sessionEnd <= endTime }).toArray()
+      this.sessions.where("sessionStart").aboveOrEqual(startTime).and((x) => {return x.sessionEnd <= endTime }).sortBy("sessionStart")
       .then((sessions: ISession[]) => {
         resolve(sessions);
       });

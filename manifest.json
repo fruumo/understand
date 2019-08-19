@@ -17,5 +17,5 @@
     },
     "default_popup": "./browser-action/index.html"
   },
-  "permissions":["chrome://favicon/*", "<all_urls>","tabs","sessions","storage","unlimitedStorage","background"]
+  "permissions":["chrome://favicon/*", "<all_urls>","tabs","sessions","storage","unlimitedStorage","background","alarms"]
 }

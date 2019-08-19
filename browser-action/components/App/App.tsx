@@ -6,6 +6,7 @@ import './App.scss';
 import MajorStats from './components/MajorStats/MajorStats';
 import SitesStats from './components/SitesStats/SitesStats';
 
+
 type stateType = {
   startTime: number,
   endTime: number,
@@ -17,10 +18,9 @@ type propsType = {
 }
 
 export default class App extends React.Component<propsType, stateType> {
-
+  interval: number;
   constructor(props:propsType) {
     super(props);
-
     this.state = {
       startTime: -1,
       endTime: -1,
@@ -37,6 +37,10 @@ export default class App extends React.Component<propsType, stateType> {
       sessions:sess.sessions,
       domains: sess.domains
     });
+  }
+
+  componentWillUmount(){
+
   }
 
   handleDateRangeChange(startTime:number, endTime:number) {

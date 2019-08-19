@@ -10,17 +10,6 @@ class SessionManager{
   constructor() {
     this.SessionDb = new SessionDb();
     this.setupListeners();
-    chrome.windows.getLastFocused({populate:true}, (window) => {
-      if(window == undefined){
-        return;
-      }
-      for(let tab of window.tabs){
-        if(tab.active){
-          this.SessionDb.createSession(tab.id, tab.url, this.sessionId);
-          this.lastTabId = tab.id;
-        }
-      }
-    });
     this.invalidatorTimeStamp = new Date().getTime();
     setInterval(() => this.checkInvalidation(), 3000);
   }
@@ -50,11 +39,15 @@ class SessionManager{
       if(!changeInfo.url || !tab.active){
         return;
       }
+      // @TODO: REPLACE INSTALLED URL
+      if(changeInfo.url == 'http://fruumo.com/understand/installed'){
+        return;
+      }
       this.SessionDb.endSession(tabId, this.sessionId);
       this.SessionDb.createSession(tabId, changeInfo.url, this.sessionId);
       this.lastTabId = tabId;
     });
-
+    
     chrome.tabs.onActivated.addListener((activeInfo) => {
       this.SessionDb.endSession(this.lastTabId, this.sessionId);
       chrome.tabs.get(activeInfo.tabId, (tab) => {
