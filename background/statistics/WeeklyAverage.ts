@@ -1,6 +1,7 @@
 import Statistic from "../types/Statistic";
 import * as moment from "moment";
 import { ISession } from "../SessionDb";
+import 'moment-duration-format';
 
 export default class WeeklyAverage extends Statistic{
   
@@ -27,8 +28,54 @@ export default class WeeklyAverage extends Statistic{
       total+= totalTime;
       days++;
     }
-
+    if(total == 0 || days == 0){
+      console.log("Error calculating weekly average!");
+      return;
+    }
     this.SessionDb.insertStatistic('weeklyAverage', total/days, -1, `${alarm.scheduledTime}`);
+  }
+
+  async generateRecommendation(startTime:number, endTime:number){
+    // Attempting to get a recommendation too large
+    if(moment(startTime).diff(endTime , 'days') != 0){
+      console.log("Cannot generate recommendation for time ranges larger than a day");
+      return false;
+    }
+    let statistics = await this.SessionDb.getStatistics('weeklyAverage');
+    if(statistics.length == 0){
+      return false;
+    }
+    let todaySessions = await this.SessionDb.getSessions(startTime, endTime);
+    let totalTime = this.totalTime(todaySessions);
+    let timestamp = moment(statistics[0].timestamp).format("dddd, MMMM Do, hh:mm");
+    if(totalTime > statistics[0].value){
+      let time = moment.duration(totalTime - statistics[0].value,'milliseconds').format("h[h] mm[m] ss[s]");
+      return {
+        recommendation: {
+          time: time,
+          context: 'above'
+        },
+        metadata: `Average last calculated on ${timestamp}`,
+      }
+    } else if(totalTime < statistics[0].value){
+      let time = moment.duration( statistics[0].value-totalTime,'milliseconds').format("h[h] mm[m] ss[s]");
+      return {
+        recommendation: {
+          time: time,
+          context: 'below'
+        },
+        metadata: `Average last calculated on ${timestamp}`,
+      }
+    }
+    return false;
+  }
+
+  async getLatestStatistic(){
+    let stat = (await this.SessionDb.getStatistics('weeklyAverage'));
+    if(stat.length == 0)
+      return []
+    else
+      return [stat[0]]; 
   }
 
   cloneDate(a: moment.Moment){

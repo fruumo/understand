@@ -1,5 +1,10 @@
-import { SessionDb } from "../SessionDb";
+import { SessionDb, IStat } from "../SessionDb";
 
+
+export type Recommendation = {
+  recommendation: any,
+  metadata: string,
+}
 export default class Statistic{
   intervalInMinutes: number;
   name: string;
@@ -9,6 +14,14 @@ export default class Statistic{
   }
   calculate(alarm: chrome.alarms.Alarm): void {
 
+  }
+
+  async generateRecommendation(startTime:number, endTime:number): Promise<Recommendation|false>{
+    return false;
+  }
+
+  async getLatestStatistic() : Promise<IStat[]>{
+    return [];
   }
 
 }

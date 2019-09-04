@@ -127,9 +127,9 @@ class SessionDb extends Dexie {
     });
   }
 
-  getStatistics(startTime: number, endTime:number): Promise<IStat[]>{
+  getStatistics(statistic: string): Promise<IStat[]>{
    return new Promise(resolve => {
-    this.statistics.where("timestamp").aboveOrEqual(startTime).and((x) => {return x.timestamp <= endTime }).toArray()
+    this.statistics.where("statistic").equals(statistic).reverse().sortBy("timestamp")
     .then((stats: IStat[]) => {
       resolve(stats);
     });

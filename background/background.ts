@@ -8,8 +8,8 @@ let dm: DataRequestManager;
 let statisticManager: StatisticManager;
 window.onload = () => {
   ssm = new SessionManager();
-  dm = new DataRequestManager(ssm);
   statisticManager = new StatisticManager(ssm.SessionDb);
+  dm = new DataRequestManager(ssm, statisticManager);
   
   // @TODO: NEED TO REPLACE
   chrome.runtime.onInstalled.addListener((details) => {

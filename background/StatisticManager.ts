@@ -20,6 +20,24 @@ export default class StatisticManager {
     }
   }
 
+  async getRecommendation(name:string, startTime:number, endTime:number){
+    for(let stat of this.Statistics){
+      if(stat.name == name){
+        return await stat.generateRecommendation(startTime, endTime);
+      }
+    }
+    return false;
+  }
+
+  async getStatistic(name:string){
+    for(let stat of this.Statistics){
+      if(stat.name == name){
+        return await stat.getLatestStatistic();
+      }
+    }
+    return false;
+  }
+
   createAlarm(s: Statistic){
     let name = s.name;
     let context = {
@@ -47,7 +65,7 @@ export default class StatisticManager {
       }
       chrome.alarms.onAlarm.addListener(this.createAlarmHandler(this.statistic));
 
-      chrome.alarms.create(this.name, {when: new Date().getTime()+2000, periodInMinutes: this.statistic.intervalInMinutes});
+      chrome.alarms.create(this.name, {periodInMinutes: this.statistic.intervalInMinutes});
     }.bind(context));
   }
 }

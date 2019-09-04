@@ -5,13 +5,15 @@ import SessionDataProvider from '../SessionDataProvider';
 import './App.scss';
 import MajorStats from './components/MajorStats/MajorStats';
 import SitesStats from './components/SitesStats/SitesStats';
-
+import AverageUsage from './components/AverageUsage/AverageUsage';
+import * as moment from 'moment';
 
 type stateType = {
   startTime: number,
   endTime: number,
   sessions: ISession[],
   domains: IDomain[],
+  rangeIsDay: boolean,
 };
 type propsType = {
   sessionDataProvider: SessionDataProvider
@@ -26,6 +28,7 @@ export default class App extends React.Component<propsType, stateType> {
       endTime: -1,
       sessions: [],
       domains:[],
+      rangeIsDay: false,
     };
     this.handleDateRangeChange = this.handleDateRangeChange.bind(this);
   }
@@ -46,7 +49,8 @@ export default class App extends React.Component<propsType, stateType> {
   handleDateRangeChange(startTime:number, endTime:number) {
     this.setState({
       startTime: startTime,
-      endTime: endTime
+      endTime: endTime,
+      rangeIsDay: moment(startTime).diff(endTime, 'days') == 0
     }, () => {
       this.updateSessions();
     });
@@ -61,6 +65,12 @@ export default class App extends React.Component<propsType, stateType> {
         <div className="widget">
           <MajorStats sessions = {this.state.sessions} domains = {this.state.domains}/>
         </div>
+        {
+          this.state.rangeIsDay && 
+          (<div className="widget">
+            <AverageUsage startTime = {this.state.startTime} endTime = {this.state.endTime}/>
+          </div>)
+        }
         <div className="widget">
           <div className="widget-title">
             Sites
