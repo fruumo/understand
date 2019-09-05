@@ -24,6 +24,10 @@ body{
           font-size:14px;
           font-weight:300;
           padding: 10px 0;
+          .more-info{
+            color:#E16D78;
+            cursor:pointer;
+          }
         }
       }
       :first-child, :last-child{

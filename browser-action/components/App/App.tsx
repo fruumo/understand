@@ -55,6 +55,9 @@ export default class App extends React.Component<propsType, stateType> {
       this.updateSessions();
     });
   }
+  openMoreInfo(){
+    chrome.tabs.create({url:'../detail/index.html'});
+  }
 
   render(){
     return (
@@ -73,7 +76,7 @@ export default class App extends React.Component<propsType, stateType> {
         }
         <div className="widget">
           <div className="widget-title">
-            Sites
+            Sites <span className="more-info" onClick={this.openMoreInfo}>(More Information)</span>
           </div>
           <SitesStats sessions = {this.state.sessions} domains = {this.state.domains}/>
         </div>

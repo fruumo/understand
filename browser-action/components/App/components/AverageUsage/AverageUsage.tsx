@@ -40,7 +40,6 @@ export default class AverageUsage extends React.Component<propsType, stateType> 
 
   render(){
     if(this.state.recommendation == false){
-      console.log('t');
       return <div></div>
     } else 
     return (
