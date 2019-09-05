@@ -67,9 +67,9 @@ export default class App extends React.Component<propsType, stateType> {
         </div>
         {
           this.state.rangeIsDay && 
-          (<div className="widget">
+          (
             <AverageUsage startTime = {this.state.startTime} endTime = {this.state.endTime}/>
-          </div>)
+          )
         }
         <div className="widget">
           <div className="widget-title">

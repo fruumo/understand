@@ -40,13 +40,16 @@ export default class AverageUsage extends React.Component<propsType, stateType> 
 
   render(){
     if(this.state.recommendation == false){
+      console.log('t');
       return <div></div>
     } else 
     return (
-      <div className="recommendation-container-container">
-        <div className="recommendation-container">
-          <div className="recommendation" title={this.state.recommendation.metadata}>
-            You are <span className = "time">{this.state.recommendation.recommendation.time}</span>&nbsp;<span className="context">{this.state.recommendation.recommendation.context}</span> your daily average usage for this week.
+      <div className="widget">
+        <div className="recommendation-container-container">
+          <div className="recommendation-container">
+            <div className="recommendation" title={this.state.recommendation.metadata}>
+              You are <span className = "time">{this.state.recommendation.recommendation.time}</span>&nbsp;<span className="context">{this.state.recommendation.recommendation.context}</span> your daily average usage for this week.
+            </div>
           </div>
         </div>
       </div>
